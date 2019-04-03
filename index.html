@@ -1,1 +1,65 @@
-???
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+<title>AEG Ticketing System</title><script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../inc/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<script>
+function recaptcha_callback() {
+	$('#btnSubmit').val('進入購票系統');
+	$('#btnSubmit').removeAttr('disabled');
+}
+function recaptchaEXP_callback() {
+	$('#btnSubmit').val('請完成以上 reCAPTCHA 驗證');
+	$('#btnSubmit').attr('disabled', 'disabled');
+}
+</script>
+
+<table width="500" border="0" cellspacing="0" cellpadding="2" align="center">
+<tbody>
+<tr>
+<td style="text-align: center">&nbsp;</td>
+<td style="text-align: center">&nbsp;</td>
+<td style="text-align: center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align: center">&nbsp;</td>
+<td style="text-align: center">&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: center">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" style="text-align: center"><img src="../Concert/candy2019_300.jpg" alt=""/></td>
+<td valign="top" style="text-align: center">&nbsp;</td>
+<td valign="top" style="text-align: center">
+<p align="center"><font face="arial, helvetica, sans-serif" color="#0000ff"><strong>盧巧音Candy Lo &ldquo;Sense&rdquo; Concert 2019</strong></font></p>
+<p align="center">網上優先訂購日期由2019年3月11日至3月13日*<br />數量有限，售完即止！</p>
+<p align="center">* Citi Clear Card : 2019年3月11日上午9時至晚上11時59分</p>
+<p align="center">&nbsp; Citi Clear Card及其他Citi信用卡 : 2019年3月12日上午9時至3月13日晚上11時59分</p>
+<form method="post" name="form1" action="https://process.aegpromotion.com/candy2019/tc/main.asp">
+	<br>
+	<div class="g-recaptcha" data-sitekey="6LcDy28UAAAAAN9a_aJdFo2E0OKnoduehHdboc8h" align="center" data-callback="recaptcha_callback" data-expired-callback="recaptchaEXP_callback"></div>
+	<input type="hidden" name="sesid" value="571973018">
+	<input type="hidden" name="timeCode" value="20190404002458">
+	<input type="hidden" name="key" value="adc3ef4c96d8d4e05df5363b65152ab3">
+	
+	<br>
+	<input type="submit" name="btnSubmit" id="btnSubmit" value="請完成以上 reCAPTCHA 驗證" disabled="disabled">
+</form>
+<script>
+$('#btnSubmit').click(function (e){  
+	if (e.ctrlKey) {
+		return false;
+	}
+});
+</script>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
