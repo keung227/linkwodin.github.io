@@ -1,0 +1,67 @@
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+<title>AEG Ticketing System</title><script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../inc/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<script>
+function recaptcha_callback() {
+	$('#btnSubmit').val('進入購票系統');
+	$('#btnSubmit').removeAttr('disabled');
+}
+function recaptchaEXP_callback() {
+	$('#btnSubmit').val('請完成以上 reCAPTCHA 驗證');
+	$('#btnSubmit').attr('disabled', 'disabled');
+}
+</script>
+
+<table width="500" border="0" cellspacing="0" cellpadding="2" align="center">
+<tbody>
+<tr>
+<td style="text-align: center">&nbsp;</td>
+<td style="text-align: center">&nbsp;</td>
+<td style="text-align: center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align: center">&nbsp;</td>
+<td style="text-align: center">&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: center">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" style="text-align: center"><img src="../Concert/justin2019_300.jpg" alt=""/></td>
+<td valign="top" style="text-align: center">&nbsp;</td>
+<td valign="top" style="text-align: center">
+<p align="center"><strong><font color="#0000FF">Citi信用卡獨家優先訂票</font></strong></p>
+<p align="center"><strong><font color="#0000FF">側田My Beautiful Curse演唱會2019</font></strong></p>
+<p align="center">優先訂購日期 - 2019年2月25日至27日 *<br>數量有限，售完即止！</p>
+<p align="center">* Citi Clear Card : 2019年2月25日上午9時至晚上11時59分
+  <br>
+Citi Clear Card及其他Citi信用卡 : 2019年2月26日上午9時至2月27日晚上11時59分</p>
+<form method="post" name="form1" action="https://process.aegpromotion.com/justin2019/tc/main.asp">
+	<br>
+	<div class="g-recaptcha" data-sitekey="6LcDy28UAAAAAN9a_aJdFo2E0OKnoduehHdboc8h" align="center" data-callback="recaptcha_callback" data-expired-callback="recaptchaEXP_callback"></div>
+	<input type="hidden" name="sesid" value="571669495">
+	<input type="hidden" name="timeCode" value="20190403235958">
+	<input type="hidden" name="key" value="1a1564888dc15e77d4ed40e5a19a180c">
+	
+	<br>
+	<input type="submit" name="btnSubmit" id="btnSubmit" value="請完成以上 reCAPTCHA 驗證" disabled="disabled">
+</form>
+<script>
+$('#btnSubmit').click(function (e){  
+	if (e.ctrlKey) {
+		return false;
+	}
+});
+</script>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
