@@ -1,1 +1,137 @@
-<html><head><title>Traffic Quota Control</title><script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script></head><body><font size=2><table width="100%"><tr><td bgcolor=#3300cc align="center" colspan=2><font color=#ffffff><b>Traffic blocked because of exceed session quota</b></font></td></tr></table><br><br>Traffic blocked because of exceed per IP shaper session quota. Please contact the system administrator.<br> Your session quota is:0, further traffic will be blocked.<br><br><hr></font></body></html>
+
+
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+
+
+
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<head>
+
+<title>AEG Ticketing System</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+</head>
+
+<body>
+
+<script>
+
+function recaptcha_callback() {
+
+	$('#btnSubmit').val('é²å¥è³¼ç¥¨ç³»çµ±');
+
+	$('#btnSubmit').removeAttr('disabled');
+
+}
+
+function recaptchaEXP_callback() {
+
+	$('#btnSubmit').val('è«å®æä»¥ä¸ reCAPTCHA é©è­');
+
+	$('#btnSubmit').attr('disabled', 'disabled');
+
+}
+
+</script>
+
+
+
+<table width="500" border="0" cellspacing="0" cellpadding="2" align="center">
+
+<tbody>
+
+<tr>
+
+<td style="text-align: center">&nbsp;</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align: center">&nbsp;</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align: center"><img src="../Concert/sammi2019_300.jpg" alt=""/></td>
+
+</tr>
+
+<tr>
+
+<td style="text-align: center">&nbsp;</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<p align="center"><font face="arial, helvetica, sans-serif" color="#0000ff"><strong>æ¸£æä¿¡ç¨å¡ç¨å®¶åªåè¨ç¥¨<br />AXAå®çåç» #FOLLOWMi é­ç§æä¸çå·¡è¿´æ¼å±æ- é¦æ¸¯ç« 2019</strong></font></p>
+
+<p align="center">åªåè¨ç¥¨æ¥æçº2019å¹´4æ4è³8æ¥<br />æ¸éæéï¼å®å®å³æ­¢ï¼</p>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align: center">
+
+
+
+<form method="post" name="form1" action="https://process.aegpromotion.com/sammi2019/tc/main.asp">
+
+	<br>
+
+	<div class="g-recaptcha" data-sitekey="6LcDy28UAAAAAN9a_aJdFo2E0OKnoduehHdboc8h" align="center" data-callback="recaptcha_callback" data-expired-callback="recaptchaEXP_callback"></div>
+
+	<input type="hidden" name="sesid" value="531507600">
+
+	<input type="hidden" name="timeCode" value="20190404092714">
+
+	<input type="hidden" name="key" value="c7aaa14da9c969226380da6256fb0868">
+
+	
+
+	<br>
+
+	<input type="submit" name="btnSubmit" id="btnSubmit" value="è«å®æä»¥ä¸ reCAPTCHA é©è­" disabled="disabled">
+
+</form>
+
+<script>
+
+$('#btnSubmit').click(function (e){  
+
+	if (e.ctrlKey) {
+
+		return false;
+
+	}
+
+});
+
+</script>
+
+
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</body>
+
+</html>
