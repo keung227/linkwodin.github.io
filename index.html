@@ -1,137 +1,202 @@
-
-
-
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-
-
-
-
+<!DOCTYPE html>
 <html>
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
 <head>
 
-<title>AEG Ticketing System</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+  <title>Priority Booking</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../inc/css/prioritybooking.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="../inc/jsModule1.js"></script>
+
 
 </head>
-
 <body>
-
 <script>
-
 function recaptcha_callback() {
-
-	$('#btnSubmit').val('é²å¥è³¼ç¥¨ç³»çµ±');
-
-	$('#btnSubmit').removeAttr('disabled');
-
+        $('#btnSubmit').text('立即購票');
+        $('#btnSubmit').removeAttr('disabled');
 }
 
 function recaptchaEXP_callback() {
-
-	$('#btnSubmit').val('è«å®æä»¥ä¸ reCAPTCHA é©è­');
-
-	$('#btnSubmit').attr('disabled', 'disabled');
-
+        $('#btnSubmit').text('請完成以上驗證');
+        $('#btnSubmit').attr('disabled', 'disabled');
 }
 
-</script>
-
-
-
-<table width="500" border="0" cellspacing="0" cellpadding="2" align="center">
-
-<tbody>
-
-<tr>
-
-<td style="text-align: center">&nbsp;</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align: center">&nbsp;</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align: center"><img src="../Concert/sammi2019_300.jpg" alt=""/></td>
-
-</tr>
-
-<tr>
-
-<td style="text-align: center">&nbsp;</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<p align="center"><font face="arial, helvetica, sans-serif" color="#0000ff"><strong>æ¸£æä¿¡ç¨å¡ç¨å®¶åªåè¨ç¥¨<br />AXAå®çåç» #FOLLOWMi é­ç§æä¸çå·¡è¿´æ¼å±æ- é¦æ¸¯ç« 2019</strong></font></p>
-
-<p align="center">åªåè¨ç¥¨æ¥æçº2019å¹´4æ4è³8æ¥<br />æ¸éæéï¼å®å®å³æ­¢ï¼</p>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align: center">
-
-
-
-<form method="post" name="form1" action="https://process.aegpromotion.com/sammi2019/tc/main.asp">
-
-	<br>
-
-	<div class="g-recaptcha" data-sitekey="6LcDy28UAAAAAN9a_aJdFo2E0OKnoduehHdboc8h" align="center" data-callback="recaptcha_callback" data-expired-callback="recaptchaEXP_callback"></div>
-
-	<input type="hidden" name="sesid" value="531507600">
-
-	<input type="hidden" name="timeCode" value="20190404092714">
-
-	<input type="hidden" name="key" value="c7aaa14da9c969226380da6256fb0868">
-
-	
-
-	<br>
-
-	<input type="submit" name="btnSubmit" id="btnSubmit" value="è«å®æä»¥ä¸ reCAPTCHA é©è­" disabled="disabled">
-
-</form>
-
-<script>
-
-$('#btnSubmit').click(function (e){  
-
-	if (e.ctrlKey) {
-
-		return false;
-
-	}
-
+$('#btnSubmit').click(function (e){
+        if (e.ctrlKey) {
+                return false;
+        }
 });
 
+function frmMainSubmit() {
+        var v = $("#card6digit").val();
+        var finalSubmit = false;
+
+        if (!(/^\d{6}$/.test(v))) {
+                alert('請輸入正確的建行(亞洲)信用卡頭6位數字！');
+                return false;
+        }
+
+        if (/^\d{6}$/.test(v)) {
+
+                $.ajax({
+                        async: false,
+                        url:"checkCardBin.asp",
+                        method:"POST", //First change type to method here
+                        data:{
+                                card6digit: v,
+                                sid: '893049600',
+                        },
+                        success:function(response) {
+                                if (response=='Wrong Card Bin') {
+                                        alert('請輸入正確的建行(亞洲)信用卡頭6位數字！');
+                                        return false;
+                                } else {
+                                        finalSubmit = true;
+                                        return true;
+                                }
+                        },
+                        error:function(){
+                                alert('系統繁忙，請重新確認！');
+                                return false;
+                        }
+                });
+
+        }
+
+        return finalSubmit;
+
+}
 </script>
 
+<!--<nav class="navbar navbar-light bg-light navbar-fixed-top">
+--><div class="container" style="background: #FFFFFF">
+        <div class="row">
+                <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2" style="background: #FFFFFF">
+                        &nbsp;
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" style="background: #FFFFFF">
+                        <div style="width: auto; max-width: 500px; max-height: 197px;"><img src="images/ccb-logo.png" class="img-responsive" alt="" /></div>
+                </div>
+                <div class="hidden-xs col-sm-6 col-md-4 col-lg-4 col-xl-4" style="background: #FFFFFF">
+                        &nbsp;
+                </div>
+        </div>
+</div>
+<!--</nav>
 
+<div class="container">
+        <div class="row">
+                <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
+                        &nbsp;
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                        <div style="width: auto; max-width: 500px; max-height: 197px;"><img src="images/blank_logo.jpg" class="img-responsive" alt="" /></div>
+                </div>
+                <div class="hidden-xs col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                        &nbsp;
+                </div>
+        </div>
+</div>-->
+<div class="container">
+        <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
-</td>
+                        <div class="card">
+                          <div class="card-body">
+                                <h1 class="card-title">建行(亞洲)信用卡獨家優先訂票</h1>
+                                <h2 class="card-subtitle mb-2 text-muted">YFLife萬通保險 PRETTY CRAZY JOEY YUNG CONCERT TOUR 容祖兒演唱會</h2>
+                                <p class="card-text">優先訂票進行中...</p>
 
-</tr>
+                                <form id="frmMain" name="frmMain" method="post" action="https://pb.prioritybooking.com.hk/joey2019/1_ticket.asp" onsubmit="return frmMainSubmit();">
+                                  <div class="form-group">
+                                        <label for="creditCardBrandLabel">建行(亞洲)信用卡頭6位數字：</label>
+                                        <input type="tel" min="1" maxlength="6" class="form-control" id="card6digit" name="card6digit" placeholder="只需輸入信用卡頭6位字" onkeypress="return isNumberKey(event)" >
+                                  </div>
 
-</tbody>
+                                  <div class="form-group">
+                                        <div class="g-recaptcha" data-sitekey="6LeE6pcUAAAAALYIf-Z6cPazmck-vRxygwjf7QJr" data-callback="recaptcha_callback" data-expired-callback="recaptchaEXP_callback"></div>
+                                  </div>
+                                  <BR clear=all>
+                                  <div class="form-group">
+                                    <button id="btnSubmit" name="btnSubmit" type="submit" class="btn btn-primary" disabled>請完成以上驗證</button>
+                                  </div>
+                                  <input type="hidden" name="submitFrom" value="frmEnter">
+                                  <input type="hidden" name="sesid" value="893049600">
+                                  <input type="hidden" name="timeCode" value="20190411103515">
+                                  <input type="hidden" name="key" value="7cd50655216a0a7054fe0e16272a214f">
+                                </form>
 
-</table>
+                                </div>
+                        </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <img src="images/joey2019_1531.JPG" width="100%" alt=""/>
+                        <img src="images/ccbaCreditCardAd.jpg" style="width:auto; height:42px; float:right; margin-top:20px; margin-bottom:20px;" alt=""/>
+                </div>
+        </div>
+</div>
+
+<div class="container">
+        <div class="row">
+
+        <div class="panel-group" id="accordion">
+                <div class="panel panel-primary">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false">
+                                  條款及細則
+                                </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse " aria-expanded="false">
+                          <div class="panel-body">
+                          <p>備註：</p>
+<ol>
+<li>優先訂票之門票數量有限，先到先得，售完即止。</li>
+<li>憑建行(亞洲)信用卡優先訂購，每張門票手續費為30港元，並從信用卡會員之賬戶扣除。</li>
+</ol>
+<p>有關條款及細則，詳情請參閱以下之條款及細則。</p>
+<p>聲明</p>
+<p>中國建設銀行（亞洲）股份有限公司為一間銀行業條例下的認可機構、保險公司條例下的認可保險代理，及證券及期貨條例下的註冊機構（中央編號：AAC155），從事第一類（證券交易）及第四類（就證券提供意見）受規管活動。本訊息的對像為香港居民，並無意向香港境外人士發佈或供其使用。本訊息並不構成買賣任何投資或保
+險產品的要約、邀請或誘導，也不構成任何投資產品價格變動之預測。以進行業務方式分享，轉發或複製本訊息均在嚴禁之列。本訊息由中國建設銀行（亞洲）股份有限公司發行，並未經證監會或香港任何其他監管機構審閱。</p>
+<p>「YFLife萬通保險PRETTY CRAZY 容祖兒演唱會」優先訂票之條款及細則 (「優先訂票」)</p>
+<ol>
+<li> 適用性 — 優先訂票服務只適用於任何及所有中國建設銀行(亞洲)股份有限公司(「本行」)所發的信用卡(「信用卡」)之信用卡會員(「信用卡會員」)。信用卡會員可於2019年4月11日起(上午9時至晚上9時)優先訂票。</li>
+<li> 限制 — 優先訂票之門票數量有限，以先到先得形式訂購，售完即止。會員須接受該派位及不得提出質疑。就優先訂票服務而言，每位持有多於1張信用卡的信用卡會員可就他/她的每張信用卡訂購最多6張門票。 訂購4張門票以上，座位或需分開。 </li>
+<li> 手續費 — 本行將從信用卡會員之賬戶就每張訂購的門票扣除HKD30手續費。 </li>
+<li> 訂票 — 訂購門票一經確認，門票之總金額、手續費及速遞費用(如適用)，將於即日從有關之信用卡賬戶扣除。過賬時信用卡賬戶必須運作正常，否則優先訂購門票申請將不被接納。 </li>
+<li> 門票送遞 — 訂購之門票將以平郵方式於2019年7月25日或之前寄至信用卡會員之通訊地址。如信用卡會員選擇以速遞方式收取門票，有關每次訂購之速遞費用為HKD25並會從信用卡會員有關之信用卡賬戶扣除。任何門票如在任何情況下(包括但不限於在郵遞或速遞期間)遺失或損毀或被竊，均不獲補發，而本行亦概不負責任何申索
+、損失或賠償。 </li>
+<li> 不得更改 —  所有已訂購之門票均不可取消、退還或更換。所有已繳付之手續費及速遞費用(如適用)皆不設退款。</li>
+<li> 免責聲明 — 本行不會充當或負上任何產品/服務供應商(或其代理)的責任，亦無就任何有關的門票或表演作任何陳述或保證。任何有關門票或表演的申索、投訴或糾紛，信用卡會員應向有關表演主辦機構反映，並跟有關表演主辦機構解決。任何信用卡會員向表演主辦機構所作的申索將不會解除該信用卡持有人對本行所承擔的付款
+責任或其他責任。特別是，信用卡會員在任何情況下不得就表演主辦機構將表演取消或改期向本行提出申索。 </li>
+<li> 本行有權更改本計劃 — 本行保留可隨時及在本行酌情權下更改本優先訂票服務及/或本條款及細則，或取替、取消或撤回本優先訂票服務。 </li>
+<li> 最終決定權 — 本行保留就本優先訂票服務之所有分歧或糾紛的最終決定權，並將不會負責或承擔任何信用卡會員就參與本計劃引致或承受的任何申索或責任。 </li>
+<li>節目如因事故取消或更改, 主辦機構將保留退票或改期之最終決定權。</li>
+<li>英文版為準 — 本文之中、英文版本如有任何歧異，一概以英文版本為準。</li>
+</ol>
+                          </div>
+                        </div>
+                </div>
+        </div>
+
+        </div>
+</div><div class="container" align="center">
+        <div class="row">
+
+        <h6>© 2019 中國建設銀行(亞洲)股份有限公司 版權所有</h6>
+
+        </div>
+</div>
 
 </body>
-
 </html>
